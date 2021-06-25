@@ -2,7 +2,7 @@ import streamlit as st
 import yfinance as yf
 import pandas as pd
 import datetime
-from bokeh.plotting import figure, output_file, show, ColumnDataSource
+from bokeh.plotting import figure, show, ColumnDataSource
 
 # App title
 st.markdown('''
@@ -27,10 +27,15 @@ tickerDf = tickerData.history(period='1d', start=start_date, end=end_date) #get 
 st.header('**Ticker data**')
 st.write(tickerDf)
 
-p = figure(plot_width=800, plot_height=250, x_axis_type="datetime")
+p = figure(plot_width= 400, plot_height=250, x_axis_type="datetime")
 p.title.text = 'Click on legend entries to hide the corresponding lines'
 
+df = pd.DataFrame(tickerDf)
+df['date'] = df.index
+p.line(df['date'], df['Close'], line_width=2, color= 'skyblue', alpha=0.8, legend=tickerSymbol)
 
+
+show(p)
 
 
 ####
