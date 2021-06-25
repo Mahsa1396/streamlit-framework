@@ -48,7 +48,7 @@ df['date'] = df.index
 p.line(df['date'], df['Close'], line_width=2, color= 'skyblue', alpha=0.8, legend=tickerSymbol)
 
 st.bokeh_chart(p, use_container_width=False)
-#show(p)
+show(p)
 
 
 ####
