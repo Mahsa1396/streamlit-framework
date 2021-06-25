@@ -3,6 +3,7 @@ import yfinance as yf
 import pandas as pd
 import datetime
 from bokeh.plotting import figure, show, ColumnDataSource
+import matplotlib.pyplot as plt
 
 # App title
 st.markdown('''
@@ -27,6 +28,18 @@ tickerDf = tickerData.history(period='1d', start=start_date, end=end_date) #get 
 st.header('**Ticker data**')
 st.write(tickerDf)
 
+#st.set_option('deprecation.showPyplotGlobalUse', False)
+#df = pd.DataFrame(tickerDf.Close)
+#df['Date'] = df.index
+#plt.fill_between(df.Date, df.Close, color='red', alpha=0.3)
+#plt.plot(df.Date, df.Close, color='red', alpha=0.8)
+#plt.xticks(rotation=90)
+#plt.title(tickerSymbol, fontweight='bold')
+#plt.xlabel('Date', fontweight='bold')
+#plt.ylabel('Closing Price', fontweight='bold')
+
+#st.pyplot()
+
 p = figure(plot_width= 400, plot_height=250, x_axis_type="datetime")
 p.title.text = 'Click on legend entries to hide the corresponding lines'
 
@@ -34,8 +47,8 @@ df = pd.DataFrame(tickerDf)
 df['date'] = df.index
 p.line(df['date'], df['Close'], line_width=2, color= 'skyblue', alpha=0.8, legend=tickerSymbol)
 
-
-show(p)
+st.bokeh_chart(p, use_container_width=False)
+#show(p)
 
 
 ####
