@@ -6,4 +6,6 @@ altair
 bokeh
 requests
 yfinance
+base64
 seaborn
+datetime
